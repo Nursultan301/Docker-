@@ -3,3 +3,6 @@ WORKDIR /var/www/app
 COPY requirements.txt ./
 RUN apk add postgresql-dev gcc python3-dev musl-dev
 RUN pip install -r requirements.txt
+RUN adduser --disabled-password red-user
+USER red-user
+EXPOSE 8000

@@ -4,10 +4,9 @@ services:
   django:
     build: .
     container_name: django
-    command:
-      - python manage.py runserver 0.0.0.0:8000
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/user/src/app
+      - .:/var/www/app
     ports:
       - "8000:8000"
     depends_on:
@@ -20,3 +19,4 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     container_name: pgdb
+
