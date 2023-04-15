@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  django:
+  my_django:
     build: .
     container_name: django
     command: sh -c "python manage.py runserver 0.0.0.0:8000"
@@ -14,9 +14,14 @@ services:
 
   pgdb:
     image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     container_name: pgdb
-
+    ports:
+      - "53421:5432"
+volumes:
+  postgres_data:
